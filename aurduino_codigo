@@ -1,0 +1,23 @@
+int PIN_LED = 7; // Pin conectado al LED
+char caracter_recibido;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(PIN_LED, OUTPUT);
+}
+
+void loop() {
+  Serial.println("Hola desde aurduino");
+  if (Serial.available() >=0) {
+    caracter_recibido = Serial.read();
+    if (caracter_recibido == '0') {
+      digitalWrite(PIN_LED, LOW); 
+      Serial.println("LED apagado");
+    } else if (caracter_recibido == '1') {
+      digitalWrite(PIN_LED, HIGH); 
+      Serial.println("LED encendido");
+    }
+  }
+  delay(100); 
+  
+}
